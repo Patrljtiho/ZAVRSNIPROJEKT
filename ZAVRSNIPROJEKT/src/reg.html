@@ -74,8 +74,6 @@
   
         <button type="submit" class="btn2">Registriraj se</button>
       </form>
-  
-      <!-- Poruka se ovdje prikazuje nakon što se forma pošalje -->
       <div id="poruka" class="mt-6 text-center text-green-600 text-7xl font-bold hidden">
         Registriran/a si!
       </div>
@@ -92,6 +90,12 @@
       forma.style.display = 'none';
       poruka.classList.remove('hidden');
     });
+  forma.addEventListener('submit', function (e) {
+    e.preventDefault();
+    localStorage.setItem('registriran', 'true');
+    forma.style.display = 'none';
+    poruka.classList.remove('hidden');
+  });
   </script>
   
   <style>

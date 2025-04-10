@@ -81,6 +81,7 @@
                 <div class="card-actions justify-end">
                     <button id="pozoviBtn3" class="btn btn-primary">Pozovi</button>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -124,6 +125,9 @@
                 </p>
                 <div class="card-actions justify-end">
                   <button id="pozoviBtn4" class="btn btn-primary">Pozovi</button>
+                  <div class="card-actions justify-end">
+                    <button id="izbrisi" class="btn btn-primary">Izbriši</button>
+                </div>
                 </div>
               </div>
             </div>
@@ -142,10 +146,19 @@
         this.disabled = true; 
       });
     });
-  if (localStorage.getItem('igrac')) {
+    const izbrisi = document.querySelectorAll('[id^="izbrisi"]'); 
 
-    localStorage.removeItem('igrac');
-  }
+izbrisi.forEach(button => {
+  button.addEventListener('click', function() {
+    if (localStorage.getItem('igrac')) {
+      localStorage.removeItem('igrac');
+      const playerCard = this.closest('.card');
+      playerCard.remove();
+      localStorage.removeItem('registriran');
+    }
+  });
+});
+       
 </script>
 
 </body>
