@@ -82,21 +82,25 @@
   </div>
   
   <script>
-    const forma = document.getElementById('postani');
-    const poruka = document.getElementById('poruka');
-  
-    forma.addEventListener('submit', function (e) {
-      e.preventDefault();
-      forma.style.display = 'none';
-      poruka.classList.remove('hidden');
-    });
+  const forma = document.getElementById('postani');
+  const poruka = document.getElementById('poruka');
+
+
+  if (sessionStorage.getItem('registriran') === 'true') {
+    forma.style.display = 'none';
+    poruka.classList.remove('hidden');
+  }
+
   forma.addEventListener('submit', function (e) {
     e.preventDefault();
-    localStorage.setItem('registriran', 'true');
+    sessionStorage.setItem('registriran', 'true');
     forma.style.display = 'none';
     poruka.classList.remove('hidden');
   });
-  </script>
+</script>
+
+
+  
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
