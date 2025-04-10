@@ -44,7 +44,7 @@
                    Pozicija: Napadač <br>
                 </p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Pozovi</button>
+                    <button id="pozoviBtn1" class="btn btn-primary">Pozovi</button>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     Grad: Split<br>
                     Pozicija: Obrambeni</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Pozovi</button>
+                    <button id="pozoviBtn2" class="btn btn-primary">Pozovi</button>
                 </div>
             </div>
         </div>
@@ -78,11 +78,13 @@
                     Grad: Zagreb<br>
                     Pozicija: Golman</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Pozovi</button>
+                    <button id="pozoviBtn3" class="btn btn-primary">Pozovi</button>
                 </div>
             </div>
         </div>
     </div>
+    <div id="output" class="p-4"></div>
+
 </section>
 
 
@@ -92,5 +94,49 @@
       <p>Autorska prava &copy; - Sva prava pridržana</p>
       </aside>
       </footer>
+      <script>
+        const igrac = JSON.parse(localStorage.getItem('igrac'));
+      
+        if (igrac) {
+          document.getElementById('output').innerHTML = `
+            <div class="card bg-base-100 shadow-sm max-w-md mx-auto">
+              <figure>
+                <img src="slike/image2.png" alt="Profilna slika" />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">${igrac.ime} ${igrac.prezime}</h2>
+                <p>
+                  Godine: ${igrac.god}<br>
+                  Email: ${igrac.email}<br>
+                  Broj: ${igrac.mob}<br>
+                  Grad: ${igrac.grad}<br>
+                  Pozicija: ${igrac.poz}
+                </p>
+                <div class="card-actions justify-end">
+                  <button id="pozoviBtn4" class="btn btn-primary">Pozovi</button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+        } else {
+          
+        }
+        const pozoviButtons = document.querySelectorAll('[id^="pozoviBtn"]'); 
+
+    pozoviButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        this.textContent = "Igrač pozvan"; 
+        this.classList.remove('btn-primary');
+        this.classList.add('btn-success');
+        this.disabled = true; 
+      });
+    });
+  if (localStorage.getItem('igrac')) {
+
+    localStorage.removeItem('igrac');
+  }
+</script>
+
 </body>
 </html>
