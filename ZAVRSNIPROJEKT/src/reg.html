@@ -27,83 +27,71 @@
   
   <div class="main-wrapper">
     <div class="form-wrapper">
-
-   
-
-      <form action="FORM_ID" method="POST">
+  
+      <form id="postani" action="slo.html" method="POST">
         <div class="form-title">
           <h2 class="">Registriraj se:</h2>
         </div>
-
+  
         <div class="input-flex">
           <div>
-            <label for="firstname" class="form-label">
-              Ime:
-            </label>
-            <input
-              type="text"
-              name="firstname"
-              id="firstname"
-              class="form-input"
-            />
+            <label for="ime" class="form-label">Ime:</label>
+            <input type="text" name="ime" id="ime" class="form-input" />
           </div>
           <div>
-            <label for="lastname" class="form-label"> Prezime: </label>
-            <input
-              type="text"
-              name="lastname"
-              id="lastname"
-              class="form-input"
-            />
+            <label for="prezime" class="form-label">Prezime:</label>
+            <input type="text" name="prezime" id="prezime" class="form-input" />
           </div>
         </div>
-
+  
         <div class="input-flex">
           <div>
-            <label for="email" class="form-label"> Email: </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="form-input"
-            />
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" name="email" id="email" class="form-input" />
           </div>
           <div>
-            <label for="phone" class="form-label"> Broj mobitela: </label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              class="form-input"
-            />
+            <label for="mobitel" class="form-label">Broj mobitela:</label>
+            <input type="text" name="mobitel" id="mobitel" class="form-input" />
           </div>
         </div>
-
+  
         <div>
-          <label for="firstname" class="form-label">
-            Lozinka:
-          </label>
-          <input
-            type="password"
-            name="firstname"
-            id="firstname"
-            class="form-input"
-          />
+          <label for="lozinka" class="form-label">Lozinka:</label>
+          <input type="password" name="lozinka" id="lozinka" class="form-input" />
         </div>
- <br>
-        
- <div class="mb-3">
-  <label for="prihvacam">
-    <input type="checkbox" id="prihvacam" />
-    Slažem se s definiranim
-    <a href="#">odredbama, uvjetima i pravilima</a>
-  </label>
-</div>
-
-        <button class="btn2">Registriraj se</button>
+  
+        <br>
+  
+        <div class="mb-3">
+          <label for="prihvacam">
+            <input type="checkbox" id="prihvacam" />
+            Slažem se s definiranim
+            <a href="#">odredbama, uvjetima i pravilima</a>
+          </label>
+        </div>
+  
+        <button type="submit" class="btn2">Registriraj se</button>
       </form>
+  
+      <!-- Poruka se ovdje prikazuje nakon što se forma pošalje -->
+      <div id="poruka" class="mt-6 text-center text-green-600 text-7xl font-bold hidden">
+        Registriran/a si!
+      </div>
+  
     </div>
   </div>
+  
+  <script>
+    const forma = document.getElementById('postani');
+    const poruka = document.getElementById('poruka');
+  
+    forma.addEventListener('submit', function (e) {
+      e.preventDefault();
+      forma.style.display = 'none';
+      poruka.classList.remove('hidden');
+    });
+  </script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -257,7 +245,17 @@
     body {
   background-image: url('slike/poz2.jpg');
 }
+.form-wrapper {
+    position: relative;
+    min-height: 550px;
+  }
 
+  #poruka {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   </style>
 <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
   <aside>
