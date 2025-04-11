@@ -2,6 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar{display:flex;
-    align-content: center;
-    }
