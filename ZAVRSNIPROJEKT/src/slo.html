@@ -12,37 +12,34 @@
 </head>
 <body>
   
-  
 <class>
   <nav class="navbar bg-base-100 shadow-lg p-1">
-    <img src="slike/favicon.ico"></img>
+    <img src="slike/favicon.ico" alt="logo" />
     <a class="text-xl font-bold">Plus jedan</a>
   </class>
    
-      <div class="container mx-auto flex justify-between">
-   <a class="btn btn-ghost" href="index.html">Naslovna</a>
-   <a class="btn btn-ghost" href="reg.html">Registracija</a>
-   <a class="btn btn-ghost" href="slo.html">Slobodni igrači</a>
-   <a class="btn btn-ghost" href="pos.html">Postani igrač</a>
-   <div class="space-x-3">
-  </div>
+  <div class="container mx-auto flex justify-between">
+    <a class="btn btn-ghost" href="index.html">Naslovna</a>
+    <a class="btn btn-ghost" href="reg.html">Registracija</a>
+    <a class="btn btn-ghost" href="slo.html">Slobodni igrači</a>
+    <a class="btn btn-ghost" href="pos.html">Postani igrač</a>
+    <div class="space-x-3"></div>
   </div>
   </nav>
 
   <section id="izbornik" class="container mx-auto py-12">
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card bg-base-100 shadow-sm">
+        <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
             <figure>
-                <img src="slike/image3.png"/>
+                <img src="slike/image3.png" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">Ante Antić</h2>
                 <p>Godine: 20<br>
                     Email: anteantić@gmail.com<br>
-                   Broj: +38567389245<br>
-                   Grad: Imotski<br>
-                   Pozicija: Napadač<br>
+                    Broj: +38567389245<br>
+                    Grad: Imotski<br>
+                    Pozicija: Napadač<br>
                 </p>
                 <div class="card-actions justify-end">
                     <button id="pozoviBtn1" class="btn btn-primary">Pozovi</button>
@@ -50,9 +47,9 @@
             </div>
         </div>
 
-        <div class="card bg-base-100 shadow-sm">
+        <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
             <figure>
-                <img src="slike/image1.png"/>
+                <img src="slike/image1.png" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">Ivo Ivić</h2>
@@ -67,9 +64,9 @@
             </div>
         </div>
 
-        <div class="card bg-base-100 shadow-sm">
+        <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
             <figure>
-                <img src="slike/image2.png"/>
+                <img src="slike/image2.png" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">Mate Matić</h2>
@@ -81,87 +78,81 @@
                 <div class="card-actions justify-end">
                     <button id="pozoviBtn3" class="btn btn-primary">Pozovi</button>
                 </div>
-                
             </div>
         </div>
     </div>
     <div id="output" class="p-4"></div>
+  </section>
 
-</section>
+  <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+    <aside class="flex items-center gap-7">
+      <a href="https://twitter.com" target="_blank">
+        <img src="slike/image.png" class="w-10 h-auto" alt="Twitter"></a>
+      <a href="https://www.youtube.com/" target="_blank">
+        <img src="slike/image6.png" class="w-10 h-auto" alt="YouTube"></a>
+      <p>Autorska prava &copy; - Sva prava pridržana</p>
+      <a href="https://www.tiktok.com" target="_blank">
+        <img src="slike/image4.png" class="w-10 h-auto" alt="TikTok"></a>
+      <a href="https://www.instagram.com" target="_blank">
+        <img src="slike/image7.png" class="w-10 h-auto" alt="Instagram"></a>
+    </aside>
+  </footer>
 
+  <script>
+    const igrac = JSON.parse(localStorage.getItem('igrac'));
 
-
-<footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
-  <aside class="flex items-center gap-7">
-    <a href="https://twitter.com" target="_blank">
-      <img src="slike/image.png" class="w-10 h-auto"></a>
-    <a href="https://www.youtube.com/" target="_blank">
-    <img src="slike/image6.png" class="w-10 h-auto"></a>
-    <p>Autorska prava &copy; - Sva prava pridržana</p>
-    <a href="https://www.tiktok.com" target="_blank">
-    <img src="slike/image4.png" class="w-10 h-auto"></a>
-    <a href="https://www.instagram.com" target="_blank">
-      <img src="slike/image7.png" class="w-10 h-auto"></a>
-  </aside>
-</footer>
-
-      <script>
-        const igrac = JSON.parse(localStorage.getItem('igrac'));
-      
-        if (igrac) {
-          document.getElementById('output').innerHTML = `
-            <div class="card bg-base-100 shadow-sm max-w-md mx-auto">
-              <figure>
-                <img src="slike/image5.png" alt="Profilna slika" />
-              </figure>
-              <div class="card-body">
-                <h2 class="card-title">${igrac.ime} ${igrac.prezime}</h2>
-                <p>
-                  Godine: ${igrac.god}<br>
-                  Email: ${igrac.email}<br>
-                  Broj: ${igrac.mob}<br>
-                  Grad: ${igrac.grad}<br>
-                  Pozicija: ${igrac.poz}
-                </p>
-                <div class="card-actions justify-end">
-                  <button id="pozoviBtn4" class="btn btn-primary">Pozovi</button>
-                  <div class="card-actions justify-end">
-                    <button id="izbrisi" class="btn btn-primary">Izbriši</button>
-                </div>
-                </div>
-              </div>
+    if (igrac) {
+      document.getElementById('output').innerHTML = `
+        <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg max-w-md mx-auto">
+          <figure>
+            <img src="slike/image5.png" alt="Profilna slika" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">${igrac.ime} ${igrac.prezime}</h2>
+            <p>
+              Godine: ${igrac.god}<br>
+              Email: ${igrac.email}<br>
+              Broj: ${igrac.mob}<br>
+              Grad: ${igrac.grad}<br>
+              Pozicija: ${igrac.poz}
+            </p>
+            <div class="card-actions justify-end">
+              <button id="pozoviBtn4" class="btn btn-primary">Pozovi</button>
+              <button id="izbrisi" class="btn btn-primary">Izbriši</button>
             </div>
-          `;
-          
-        } else {
-          
-        }
-        const pozoviButtons = document.querySelectorAll('[id^="pozoviBtn"]'); 
+          </div>
+        </div>
+      `;
+    }
 
+    const pozoviButtons = document.querySelectorAll('[id^="pozoviBtn"]');
     pozoviButtons.forEach(button => {
       button.addEventListener('click', function() {
-        this.textContent = "Igrač pozvan"; 
+        this.textContent = "Igrač pozvan";
         this.classList.remove('btn-primary');
         this.classList.add('btn-success');
-        this.disabled = true; 
+        this.disabled = true;
       });
     });
-    const izbrisi = document.querySelectorAll('[id^="izbrisi"]'); 
 
-izbrisi.forEach(button => {
-  button.addEventListener('click', function() {
-    if (localStorage.getItem('igrac')) {
-      localStorage.removeItem('igrac');
-      const playerCard = this.closest('.card');
-      playerCard.remove();
-      localStorage.removeItem('registriran');
+    const izbrisi = document.querySelectorAll('[id^="izbrisi"]');
+    izbrisi.forEach(button => {
+      button.addEventListener('click', function() {
+        if (localStorage.getItem('igrac')) {
+          localStorage.removeItem('igrac');
+          const playerCard = this.closest('.card');
+          playerCard.remove();
+          localStorage.removeItem('registriran');
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .card-body {
+      padding: 75px;
     }
-  });
-});
-       
-</script>
-<style>
-  .card-body{ padding: 75px}
-</style>
+  </style>
+
 </body>
 </html>
