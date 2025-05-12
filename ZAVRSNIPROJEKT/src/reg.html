@@ -82,22 +82,35 @@
   </div>
   
   <script>
-  const forma = document.getElementById('postani');
-  const poruka = document.getElementById('poruka');
-
-
-  if (sessionStorage.getItem('registriran') === 'true') {
-    forma.style.display = 'none';
-    poruka.classList.remove('hidden');
-  }
-
-  forma.addEventListener('submit', function (e) {
-    e.preventDefault();
-    sessionStorage.setItem('registriran', 'true');
-    forma.style.display = 'none';
-    poruka.classList.remove('hidden');
-  });
-</script>
+    const forma = document.getElementById('postani');
+    const poruka = document.getElementById('poruka');
+    
+    if (sessionStorage.getItem('registriran') === 'true') {
+      forma.style.display = 'none';
+      poruka.classList.remove('hidden');
+    }
+    
+    forma.addEventListener('submit', function (e) {
+      e.preventDefault();
+    
+      const ime = document.getElementById('ime').value.trim();
+      const prezime = document.getElementById('prezime').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobitel = document.getElementById('mobitel').value.trim();
+      const lozinka = document.getElementById('lozinka').value.trim();
+      const prihvacam = document.getElementById('prihvacam').checked;
+    
+      if (!ime || !prezime || !email || !mobitel || !lozinka || !prihvacam) {
+        alert("Molimo ispunite sva polja i prihvatite uvjete.");
+        return;
+      }
+    
+      sessionStorage.setItem('registriran', 'true');
+      forma.style.display = 'none';
+      poruka.classList.remove('hidden');
+    });
+    </script>
+    
 
 
   
