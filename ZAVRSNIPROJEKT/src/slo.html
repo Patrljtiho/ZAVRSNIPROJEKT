@@ -124,7 +124,6 @@
 </footer>
 
 <script>
-  // Postojeći kod za prikaz igrača iz localStorage
   const igrac = JSON.parse(localStorage.getItem('igrac'));
 
   if (igrac) {
@@ -151,7 +150,6 @@
     `;
   }
 
-  // Event listener za dugme Pozovi
   const pozoviButtons = document.querySelectorAll('[id^="pozoviBtn"]');
   pozoviButtons.forEach(button => {
     button.addEventListener('click', function () {
@@ -162,7 +160,6 @@
     });
   });
 
-  // Event listener za dugme Izbriši
   const izbrisi = document.querySelectorAll('[id^="izbrisi"]');
   izbrisi.forEach(button => {
     button.addEventListener('click', function () {
@@ -175,12 +172,10 @@
     });
   });
 
-  // Event listener za Rezerviraj gumbe
   document.querySelectorAll('.rezerviraj-btn').forEach(button => {
     button.addEventListener('click', () => {
       const imeIgraca = button.getAttribute('data-ime');
 
-      // Formatiranje id inputa za datum prema imenu igrača
       const inputId = 'datum-' + imeIgraca.toLowerCase().replace(/\s+/g, '-');
       const datumInput = document.getElementById(inputId);
 
@@ -194,23 +189,18 @@
         datum: datumInput.value
       };
 
-      // Spremi u localStorage
       let sveRezervacije = JSON.parse(localStorage.getItem('rezervacije')) || [];
 sveRezervacije.push(rezervacija);
 localStorage.setItem('rezervacije', JSON.stringify(sveRezervacije));
 
 
-      // Preusmjeri na rez.html
       window.location.href = 'rez.html';
     });
   });
-  // Dohvati sve rezervirane igrače iz localStorage (array imena)
 let rezerviraniIgraci = JSON.parse(localStorage.getItem('rezerviraniIgraci')) || [];
 
-// Funkcija koja sakriva rezervirane igrače
 function sakrijRezerviraneIgrace() {
   rezerviraniIgraci.forEach(ime => {
-    // Imenuj id inputa na isti način kao prije
     const sanitizedIme = ime.toLowerCase().replace(/\s+/g, '-');
     const card = document.querySelector(`input[id^="datum-${sanitizedIme}"]`)?.closest('.card');
     if (card) {
@@ -219,7 +209,6 @@ function sakrijRezerviraneIgrace() {
   });
 }
 
-// Pozovi funkciju odmah pri učitavanju stranice
 sakrijRezerviraneIgrace();
 document.querySelectorAll('.rezerviraj-btn').forEach(button => {
   button.addEventListener('click', () => {
@@ -240,17 +229,14 @@ document.querySelectorAll('.rezerviraj-btn').forEach(button => {
 
     localStorage.setItem('rezervacija', JSON.stringify(rezervacija));
 
-    // Dodaj igrača u rezervirane
     if (!rezerviraniIgraci.includes(imeIgraca)) {
       rezerviraniIgraci.push(imeIgraca);
       localStorage.setItem('rezerviraniIgraci', JSON.stringify(rezerviraniIgraci));
     }
 
-    // Sakrij karticu
     const card = button.closest('.card');
     if (card) card.style.display = 'none';
 
-    // Preusmjeri na rez.html
     window.location.href = 'rez.html';
   });
 });
