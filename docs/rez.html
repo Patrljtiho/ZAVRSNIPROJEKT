@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./output.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" />
+  <title>Rezervacije</title>
+</head>
+<body>
+
+    <nav class="navbar bg-base-100 shadow-lg p-1">
+      <img src="slike/favicon.ico"></img>
+      <a class="text-xl font-bold">Plus jedan</a>
+    </class>
+     
+        <div class="container mx-auto flex justify-between">
+     <a class="btn btn-ghost" href="index.html">Naslovna</a>
+     <a class="btn btn-ghost" href="reg.html">Registracija</a>
+     <a class="btn btn-ghost" href="slo.html">Slobodni igrači</a>
+     <a class="btn btn-ghost" href="pos.html">Postani igrač</a>
+     <a class="btn btn-ghost" href="rez.html">Rezervacije</a>
+     <div class="space-x-3">
+    </div>
+    </div>
+    </nav>
+    <section class="container mx-auto py-12">
+      <h1 class="text-3xl font-bold text-center mb-10">Vaše rezervacije</h1>
+      <div id="rez-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+      </div>
+    </section>
+<div id="rez-container"></div>
+
+<footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+  <aside class="flex items-center gap-7">
+    <a href="https://twitter.com" target="_blank">
+      <img src="slike/image.png" class="w-10 h-auto" alt="Twitter" />
+    </a>
+    <a href="https://www.youtube.com/" target="_blank">
+      <img src="slike/image6.png" class="w-10 h-auto" alt="YouTube" />
+    </a>
+    <p>Autorska prava &copy; - Sva prava pridržana</p>
+    <a href="https://www.tiktok.com" target="_blank">
+      <img src="slike/image4.png" class="w-10 h-auto" alt="TikTok" />
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="slike/image7.png" class="w-10 h-auto" alt="Instagram" />
+    </a>
+  </aside>
+</footer>
+
+<script>
+  const igraciPodaci = {
+    "Ante Antić": { godine: 20, pozicija: "Napadač", grad: "Imotski", slika: "slike/image3.png" },
+  "Ivo Ivić": { godine: 17, pozicija: "Obrambeni", grad: "Split", slika: "slike/image1.png" },
+  "Mate Matić": { godine: 16, pozicija: "Golman", grad: "Zagreb", slika: "slike/image2.png" },
+  };
+
+  const rezervacije = JSON.parse(localStorage.getItem('rezervacije')) || [];
+  const container = document.getElementById('rez-container');
+  container.innerHTML = '';
+
+  rezervacije.forEach((rez, index) => {
+    const podaci = igraciPodaci[rez.ime] || { godine: "N/A", pozicija: "Nepoznato", slika: "slike/image5.png" };
+
+    const card = document.createElement('div');
+    card.className = 'card bg-base-100 shadow-sm border border-gray-100 rounded-lg';
+
+    card.innerHTML = `
+      <figure>
+        <img src="${podaci.slika}" alt="Slika igrača">
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">${rez.ime}</h2>
+        <p>
+          Godine: ${podaci.godine}<br>
+          Pozicija: ${podaci.pozicija}<br>
+          Grad: ${podaci.grad}<br>
+          Rezerviran za: ${rez.datum}
+        </p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-error otkazi-btn" data-index="${index}">Otkaži</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  document.querySelectorAll('.otkazi-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const index = parseInt(button.getAttribute('data-index'));
+      rezervacije.splice(index, 1);
+      localStorage.setItem('rezervacije', JSON.stringify(rezervacije));
+
+      let rezerviraniIgraci = JSON.parse(localStorage.getItem('rezerviraniIgraci')) || [];
+      const ime = button.closest('.card').querySelector('.card-title').textContent;
+      rezerviraniIgraci = rezerviraniIgraci.filter(i => i !== ime);
+      localStorage.setItem('rezerviraniIgraci', JSON.stringify(rezerviraniIgraci));
+
+      location.reload();
+    });
+  });
+</script>
+<style>
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  </style>
+</body>
+</html>

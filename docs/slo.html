@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css">
+  <link rel="icon" href="slike/favicon.ico" type="image/x-icon">
+  <title>Slobodni igrači</title>
+</head>
+<body>
+
+  <class>
+    <nav class="navbar bg-base-100 shadow-lg p-1">
+      <img src="slike/favicon.ico"></img>
+      <a class="text-xl font-bold">Plus jedan</a>
+    </class>
+     
+        <div class="container mx-auto flex justify-between">
+     <a class="btn btn-ghost" href="index.html">Naslovna</a>
+     <a class="btn btn-ghost" href="reg.html">Registracija</a>
+     <a class="btn btn-ghost" href="slo.html">Slobodni igrači</a>
+     <a class="btn btn-ghost" href="pos.html">Postani igrač</a>
+     <a class="btn btn-ghost" href="rez.html">Rezervacije</a>
+     <div class="space-x-3">
+    </div>
+    </div>
+    </nav>
+
+<section id="izbornik" class="container mx-auto py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
+      <figure>
+        <img src="slike/image3.png" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">Ante Antić</h2>
+        <p>
+          Godine: 20<br>
+          Email: anteantić@gmail.com<br>
+          Broj: +38567389245<br>
+          Grad: Imotski<br>
+          Pozicija: Napadač<br>
+        </p>
+
+        <label for="datum-ante-antić" class="block mt-2 mb-1 font-semibold">Odaberi datum rezervacije:</label>
+        <input type="date" id="datum-ante-antić" name="datum-ante-antić" class="input input-bordered w-full max-w-xs" />
+
+        <div class="card-actions justify-end mt-3">
+          <button class="btn btn-primary rezerviraj-btn" data-ime="Ante Antić">Rezerviraj</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
+      <figure>
+        <img src="slike/image1.png" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">Ivo Ivić</h2>
+        <p>
+          Godine: 17<br>
+          Email: ivoivić@gmail.com<br>
+          Broj: +385397092347<br>
+          Grad: Split<br>
+          Pozicija: Obrambeni
+        </p>
+
+        <label for="datum-ivo-ivić" class="block mt-2 mb-1 font-semibold">Odaberi datum rezervacije:</label>
+        <input type="date" id="datum-ivo-ivić" name="datum-ivo-ivić" class="input input-bordered w-full max-w-xs" />
+
+        <div class="card-actions justify-end mt-3">
+          <button class="btn btn-primary rezerviraj-btn" data-ime="Ivo Ivić">Rezerviraj</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg">
+      <figure>
+        <img src="slike/image2.png" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">Mate Matić</h2>
+        <p>
+          Godine: 16<br>
+          Email: matematić@gmail.com<br>
+          Broj: +385932022634<br>
+          Grad: Zagreb<br>
+          Pozicija: Golman
+        </p>
+
+        <label for="datum-mate-matić" class="block mt-2 mb-1 font-semibold">Odaberi datum rezervacije:</label>
+        <input type="date" id="datum-mate-matić" name="datum-mate-matić" class="input input-bordered w-full max-w-xs" />
+
+        <div class="card-actions justify-end mt-3">
+          <button class="btn btn-primary rezerviraj-btn" data-ime="Mate Matić">Rezerviraj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="output" class="p-4"></div>
+</section>
+
+<footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+  <aside class="flex items-center gap-7">
+    <a href="https://twitter.com" target="_blank">
+      <img src="slike/image.png" class="w-10 h-auto" alt="Twitter" />
+    </a>
+    <a href="https://www.youtube.com/" target="_blank">
+      <img src="slike/image6.png" class="w-10 h-auto" alt="YouTube" />
+    </a>
+    <p>Autorska prava &copy; - Sva prava pridržana</p>
+    <a href="https://www.tiktok.com" target="_blank">
+      <img src="slike/image4.png" class="w-10 h-auto" alt="TikTok" />
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="slike/image7.png" class="w-10 h-auto" alt="Instagram" />
+    </a>
+  </aside>
+</footer>
+
+<script>
+  const igrac = JSON.parse(localStorage.getItem('igrac'));
+
+  if (igrac) {
+    document.getElementById('output').innerHTML = `
+      <div class="card bg-base-100 shadow-sm border border-gray-100 rounded-lg max-w-md mx-auto">
+        <figure>
+          <img src="slike/image5.png" alt="Profilna slika" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">${igrac.ime} ${igrac.prezime}</h2>
+          <p>
+            Godine: ${igrac.god}<br>
+            Email: ${igrac.email}<br>
+            Broj: ${igrac.mob}<br>
+            Grad: ${igrac.grad}<br>
+            Pozicija: ${igrac.poz}
+          </p>
+          <div class="card-actions justify-end">
+            <button id="pozoviBtn4" class="btn btn-primary">Pozovi</button>
+            <button id="izbrisi" class="btn btn-primary">Izbriši</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const pozoviButtons = document.querySelectorAll('[id^="pozoviBtn"]');
+  pozoviButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      this.textContent = "Igrač pozvan";
+      this.classList.remove('btn-primary');
+      this.classList.add('btn-success');
+      this.disabled = true;
+    });
+  });
+
+  const izbrisi = document.querySelectorAll('[id^="izbrisi"]');
+  izbrisi.forEach(button => {
+    button.addEventListener('click', function () {
+      if (localStorage.getItem('igrac')) {
+        localStorage.removeItem('igrac');
+        const playerCard = this.closest('.card');
+        playerCard.remove();
+        localStorage.removeItem('registriran');
+      }
+    });
+  });
+
+  document.querySelectorAll('.rezerviraj-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const imeIgraca = button.getAttribute('data-ime');
+
+      const inputId = 'datum-' + imeIgraca.toLowerCase().replace(/\s+/g, '-');
+      const datumInput = document.getElementById(inputId);
+
+      if (!datumInput || !datumInput.value) {
+        alert('Molimo odaberite datum rezervacije!');
+        return;
+      }
+
+      const rezervacija = {
+        ime: imeIgraca,
+        datum: datumInput.value
+      };
+
+      let sveRezervacije = JSON.parse(localStorage.getItem('rezervacije')) || [];
+sveRezervacije.push(rezervacija);
+localStorage.setItem('rezervacije', JSON.stringify(sveRezervacije));
+
+
+      window.location.href = 'rez.html';
+    });
+  });
+let rezerviraniIgraci = JSON.parse(localStorage.getItem('rezerviraniIgraci')) || [];
+
+function sakrijRezerviraneIgrace() {
+  rezerviraniIgraci.forEach(ime => {
+    const sanitizedIme = ime.toLowerCase().replace(/\s+/g, '-');
+    const card = document.querySelector(`input[id^="datum-${sanitizedIme}"]`)?.closest('.card');
+    if (card) {
+      card.style.display = 'none';
+    }
+  });
+}
+
+sakrijRezerviraneIgrace();
+document.querySelectorAll('.rezerviraj-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const imeIgraca = button.getAttribute('data-ime');
+
+    const inputId = 'datum-' + imeIgraca.toLowerCase().replace(/\s+/g, '-');
+    const datumInput = document.getElementById(inputId);
+
+    if (!datumInput || !datumInput.value) {
+      alert('Molimo odaberite datum rezervacije!');
+      return;
+    }
+
+    const rezervacija = {
+      ime: imeIgraca,
+      datum: datumInput.value
+    };
+
+    localStorage.setItem('rezervacija', JSON.stringify(rezervacija));
+
+    if (!rezerviraniIgraci.includes(imeIgraca)) {
+      rezerviraniIgraci.push(imeIgraca);
+      localStorage.setItem('rezerviraniIgraci', JSON.stringify(rezerviraniIgraci));
+    }
+
+    const card = button.closest('.card');
+    if (card) card.style.display = 'none';
+
+    window.location.href = 'rez.html';
+  });
+});
+
+</script>
+
+<style>
+  .card-body {
+    padding: 75px;
+  }
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+
+</body>
+</html>
